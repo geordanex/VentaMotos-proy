@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+	<!-- BOOTSTRAP CORE STYLE  -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONT AWESOME ICONS  -->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE  -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+	<title>Registro de Empleados</title>
+</h:head>
+<h:body>
+	<header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <strong>Proyecto Empresarial </strong>Ventas de Motos
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <!-- HEADER END-->
+    <div class="navbar navbar-inverse set-radius-zero">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+
+                    <img src="assets/img/logo.png" />
+                </a>
+
+            </div>
+
+            <div class="left-div">
+                <div class="user-settings-wrapper">
+                    <ul class="nav">
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-settings">
+                                <div class="media">
+                                    <a class="media-left" href="#">
+                                        <img src="assets/img/64-64.jpg" alt="" class="img-rounded" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Jhon Deo Alex </h4>
+                                        <h5></h5>
+
+                                    </div>
+                                </div>
+                                <hr />
+                                <h5><strong>Personal Bio : </strong></h5>
+                                Anim pariatur cliche reprehen derit.
+                                <hr />
+                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.html" class="btn btn-danger btn-sm">Logout</a>
+
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOGO HEADER END-->
+    <section class="menu-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="navbar-collapse collapse ">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <li><a  href="index.html">Dashboard</a></li>
+                            <li><a href="#">Catalogo</a></li>
+                            <li><a href="#">Venta de Motos</a></li>
+                            <li><a href="empleado.xhtml">Mantenedores</a></li>
+                             <li><a href="#">Acerca de</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-head-line">Mantenimiento de Empleados</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+   					<p:panel id="pnPrincipal" header = "Gestion de Empleados">
+						<h:form id="frmEditor">
+							<p:panel id="pnEmpleado" header="Datos de Empleado" style="margin-bottom:20px">
+							
+								<p:messages id="msgs"/>
+									<h:panelGrid columns="3" cellpadding="10">
+										<p:outputLabel for="txtNombre"
+											value="Nombre Empleado: " />
+										<p:inputText id="txtNombre"
+													 value="#{gestionEmpleadoBean.empleado.nombre}"
+													 required="true"
+													 validatorMessage="El nombre no es correcto">
+										</p:inputText>
+										<p:message for="txtNombre" display="icon"/>
+										
+										<p:outputLabel for="txtApellido"
+											value="Apellidos del Empleado: " />
+										<p:inputText id="txtApellido"
+													 value="#{gestionEmpleadoBean.empleado.apellidos}"
+													 required="true"
+													 validatorMessage="El apellido no es correcto">
+										</p:inputText>
+										<p:message for="txtApellido" display="icon"/>
+										
+										<p:outputLabel for="rbSexo" value="Sexo: " />
+				        				<p:selectOneRadio id="rbSexo" value="#{gestionEmpleadoBean.empleado.sexo}" 
+				        								  required="true" validatorMessage="El sexo no es correcto">
+				            				<f:selectItem itemLabel="Masculino" itemValue="M" />
+				            				<f:selectItem itemLabel="Femenino" itemValue="F" />
+				        				</p:selectOneRadio>
+				        				<p:message for="rbSexo" display="icon"/>
+										
+										<p:outputLabel for="txtCargo"
+											value="Cargo del Empleado: " />
+										<p:inputText id="txtCargo"
+													 value="#{gestionEmpleadoBean.empleado.cargo}"
+													 required="true"
+													 validatorMessage="El Cargo no es correcto">
+										</p:inputText>
+										<p:message for="txtCargo" display="icon"/>
+									
+									</h:panelGrid>
+									
+									<p:commandButton value="Registrar"
+													 rendered="${not gestionEmpleadoBean.editar}"
+													 action="${gestionEmpleadoBean.guardar}"
+													 update="frmLista:pdTable pnEmpleado"/>
+									
+									<p:commandButton value="Nuevo"
+													 action="${gestionEmpleadoBean.nuevo}"
+													 update="pnEmpleado"
+													 process="@this" />
+													 
+									<p:commandButton value="Modificar"
+													 rendered="${gestionEmpleadoBean.editar}"
+													 action="${gestionEmpleadoBean.guardar}"
+													 update="frmLista:pdTable pnEmpleado" />
+							
+							</p:panel>
+						</h:form>
+						
+						<h:form id="frmLista">
+							<p:dataTable id="pdTable"
+										 var="empleado"
+										 value="#{gestionEmpleadoBean.empleados}">
+								<p:column headerText="ID">
+									<h:outputText value="#{producto.IdEmpleado}" />
+								</p:column>
+								<p:column headerText="Nombres">
+									<h:outputText value="#{producto.nombre}" />
+								</p:column>
+								<p:column headerText="Apellidos">
+									<h:outputText value="#{producto.apellidos}" />
+								</p:column>
+								<p:column headerText="Sexo">
+									<h:outputText value="#{producto.sexo}" />
+								</p:column>
+								<p:column headerText="Cargo">
+									<h:outputText value="#{producto.cargo}" />
+								</p:column>
+								
+								<p:column>
+									<p:commandButton icon="ui-icon-edit"
+													 title="Editar"
+													 actionListener="#{gestionEmpleadoBean.editar(empleado)}"
+													 ajax="false" />
+								</p:column>
+							</p:dataTable>
+						</h:form>
+					</p:panel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CONTENT-WRAPPER SECTION END-->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    &copy; 2015 YourCompany | By : <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap</a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER SECTION END-->
+    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY SCRIPTS -->
+    <script src="assets/js/jquery-1.11.1.js"></script>
+    <!-- BOOTSTRAP SCRIPTS  -->
+    <script src="assets/js/bootstrap.js"></script>
+</h:body>
+</html>
