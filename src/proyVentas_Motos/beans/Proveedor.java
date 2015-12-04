@@ -1,7 +1,9 @@
 package proyVentas_Motos.beans;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -16,6 +18,7 @@ public class Proveedor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idProveedor;
 
 	private String direccion;

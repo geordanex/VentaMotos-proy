@@ -9,5 +9,20 @@
 		<managed-bean-class>proyVentas_Motos.controller.GestionEmpleadoController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>gestionClienteBean</managed-bean-name>
+		<managed-bean-class>proyVentas_Motos.controller.GestionClienteController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>gestionProductoBean</managed-bean-name>
+		<managed-bean-class>proyVentas_Motos.controller.GestionProductoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>gestionProveedorBean</managed-bean-name>
+		<managed-bean-class>proyVentas_Motos.controller.GestionProveedorController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>
