@@ -33,6 +33,9 @@ public class GestionEmpleadoController {
 		
 		//Se inicializa en nuevo estado
 		nuevo();
+		
+		//Actualiza la lista de empleados
+		actualizarLista();
 	}
 	
 	public Empleado getEmpleado(){
@@ -40,6 +43,11 @@ public class GestionEmpleadoController {
 	}
 	public void setEmpleado(Empleado empleado){
 		this.empleado = empleado;
+	}
+	
+	private void actualizarLista(){
+		TypedQuery<Empleado> query = em.createNamedQuery("Empleado.findAll", Empleado.class);
+		empleados = query.getResultList();
 	}
 	
 	public List<Empleado> getEmpleados(){
@@ -70,6 +78,7 @@ public class GestionEmpleadoController {
 			
 			em.getTransaction().commit();
 			nuevo();
+			actualizarLista();
 			mensaje = "Se ha ingresado el Empleado correctamente.";
 				
 		}catch(Exception e){

@@ -14,6 +14,8 @@ import javax.persistence.TypedQuery;
 
 
 
+
+import proyVentas_Motos.beans.Categoria;
 import proyVentas_Motos.beans.Empleado;
 import proyVentas_Motos.beans.Producto;
 
@@ -24,6 +26,8 @@ public class GestionProductoController {
 	EntityManager em;
 	
 	private List<Producto> productos;
+	
+	private List<Categoria> categorias;
 	
 	Producto producto;
 	
@@ -37,8 +41,20 @@ public class GestionProductoController {
 		
 		//Se inicializa en nuevo estado
 		nuevo();
+		
+		//Carga la lista de Categoria
+		TypedQuery<Categoria> querytp = em.createNamedQuery("Categoria.findAll",Categoria.class);
+		setCategorias(querytp.getResultList());
+		
+		//Actualizar lista de productos
+		actualizarLista();
 	}
 	
+	private void actualizarLista() {
+		TypedQuery<Producto> query = em.createNamedQuery("Producto.findAll", Producto.class);
+		productos = query.getResultList();
+	}
+
 	public List<Producto> getProductos() {
 		return productos;
 	}
@@ -75,6 +91,7 @@ public class GestionProductoController {
 			
 			em.getTransaction().commit();
 			nuevo();
+			actualizarLista();
 			mensaje = "Se ha ingresado el Producto correctamente.";
 				
 		}catch(Exception e){
@@ -94,6 +111,14 @@ public class GestionProductoController {
 	public void editar(Producto productoModificar){
 		producto = productoModificar;
 		editar = true;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 }

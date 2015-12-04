@@ -1,7 +1,11 @@
 package proyVentas_Motos.beans;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import java.util.List;
+
 
 
 /**
@@ -22,9 +26,8 @@ public class Categoria implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-one association to Producto
-	@ManyToOne
-	@JoinColumn(name="IdProducto")
-	private Producto tbProducto;
+	@OneToMany(mappedBy="tbCategoria")
+	private List<Producto> tbProductos;
 
 	public Categoria() {
 	}
@@ -53,12 +56,40 @@ public class Categoria implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Producto getTbProducto() {
-		return this.tbProducto;
+	public List<Producto> getTbProductos() {
+		return this.tbProductos;
 	}
 
-	public void setTbProducto(Producto tbProducto) {
-		this.tbProducto = tbProducto;
+	public void setTbProductos(List<Producto> tbProductos) {
+		this.tbProductos = tbProductos;
+	}
+
+	public Producto addTbProducto(Producto tbProducto) {
+		getTbProductos().add(tbProducto);
+		tbProducto.setTbCategoria(this);
+
+		return tbProducto;
+	}
+
+	public Producto removeTbProducto(Producto tbProducto) {
+		getTbProductos().remove(tbProducto);
+		tbProducto.setTbCategoria(null);
+
+		return tbProducto;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (this == obj)
+	        return true;
+	    if (obj == null)
+	        return false;
+	    if (!(obj instanceof Categoria))
+	        return false;
+	    if(this.idCategoria == ((Categoria)obj).idCategoria)
+	    	return true;
+	    return false;
 	}
 
 }

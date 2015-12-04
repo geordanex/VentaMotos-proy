@@ -19,20 +19,19 @@ public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProducto;
 
 	private String nombre;
 
 	private BigDecimal precio;
 
-	private String proveedor;
-
 	private int stock;
 
 	//bi-directional many-to-one association to Categoria
-	@OneToMany(mappedBy="tbProducto")
-	private List<Categoria> tbCategorias;
+	@ManyToOne
+	@JoinColumn(name="IdCategoria")
+	private Categoria tbCategoria;
 
 	//bi-directional many-to-one association to Comentario
 	@OneToMany(mappedBy="tbProducto")
@@ -70,14 +69,6 @@ public class Producto implements Serializable {
 		this.precio = precio;
 	}
 
-	public String getProveedor() {
-		return this.proveedor;
-	}
-
-	public void setProveedor(String proveedor) {
-		this.proveedor = proveedor;
-	}
-
 	public int getStock() {
 		return this.stock;
 	}
@@ -86,26 +77,12 @@ public class Producto implements Serializable {
 		this.stock = stock;
 	}
 
-	public List<Categoria> getTbCategorias() {
-		return this.tbCategorias;
+	public Categoria getTbCategoria() {
+		return this.tbCategoria;
 	}
 
-	public void setTbCategorias(List<Categoria> tbCategorias) {
-		this.tbCategorias = tbCategorias;
-	}
-
-	public Categoria addTbCategoria(Categoria tbCategoria) {
-		getTbCategorias().add(tbCategoria);
-		tbCategoria.setTbProducto(this);
-
-		return tbCategoria;
-	}
-
-	public Categoria removeTbCategoria(Categoria tbCategoria) {
-		getTbCategorias().remove(tbCategoria);
-		tbCategoria.setTbProducto(null);
-
-		return tbCategoria;
+	public void setTbCategoria(Categoria tbCategoria) {
+		this.tbCategoria = tbCategoria;
 	}
 
 	public List<Comentario> getTbComentarios() {

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Registro de Productos</title>
+</h:head>
+<h:body>
+	<p:panel id="pnPrincipal" header="Gestion de Productos">
+		<h:form id="frmEditor">
+			<p:panel id="pnProducto" header="Datos de Producto" style="margin-bottom:20px">
+				<p:messages id="msgs" />
+					<h:panelGrid columns="3" cellpadding="10">
+						<p:outputLabel for="somCategoria"
+									   value="Categoria de Producto: "/>
+						<p:selectOneMenu id="somCategoria"
+										 name="somCategoria"
+										 value="#{gestionProductoBean.producto.categoria}"
+										 required="true">
+							<f:selectItem itemValue="#{null}"
+										  itemLabel="--Seleccione--"/>
+							<f:selectItems value="#{gestionProductoBean.categorias}"
+										   var="cat"
+										   itemValue="#{cat}"
+										   itemLabel="#{cat.categoria}">
+							</f:selectItems>
+							<f:converter converterId="CategoriaConverter"/>
+						</p:selectOneMenu>
+						<p:message for="somCategoria" display="icon"/>
+				
+						<p:outputLabel for="txtNombre"
+									   value="Nombre Producto: " />
+						<p:inputText id="txtNombre"
+									 value="#{gestionProductoBean.producto.nombre}"
+									 required="true"
+									 validatorMessage="El nombre no es correcto">
+						</p:inputText>
+						<p:message for="txtNombre" display="icon"/>
+						
+						<p:outputLabel for="txtPrecio"
+									   value="Precio: " />
+						<p:inputText id="txtPrecio"
+									 value="#{gestionProductoBean.producto.precio}"
+									 required="true"
+									 validatorMessage="El Precio no es correcto">
+						</p:inputText>
+						<p:message for="txtPrecio" display="icon"/>
+						
+						<p:outputLabel for="txtPrecio"
+									   value="Precio: " />
+						<p:inputText id="txtPrecio"
+									 value="#{gestionProductoBean.producto.precio}"
+									 required="true"
+									 validatorMessage="El Precio no es correcto">
+						</p:inputText>
+						<p:message for="txtPrecio" display="icon"/>
+						
+						<p:outputLabel for="txtStock"
+									   value="Precio: " />
+						<p:inputText id="txtStock"
+									 value="#{gestionProductoBean.producto.stock}"
+									 required="true"
+									 validatorMessage="El Stock no es correcto">
+						</p:inputText>
+						<p:message for="txtStock" display="icon"/>
+					</h:panelGrid>
+					
+					<p:commandButton value="Registrar"
+									 rendered="${not gestionProductoBean.editar}"
+									 action="${gestionProductoBean.guardar}"
+									 update="frmLista:pdTable pnProducto"/>
+									 
+					<p:commandButton value="Nuevo"
+									 action="${gestionProductoBean.nuevo}"
+									 update="pnProducto"
+									 process="@this"/>
+									 
+					<p:commandButton value="Modificar"
+									 rendered="${gestionProductoBean.editar}"
+									 action="${gestionProductoBean.guardar}"
+									 update="frmLista:pdTable pnProducto"/>
+					
+			
+			
+			</p:panel>
+		</h:form>
+	</p:panel>
+
+</h:body>
+</html>

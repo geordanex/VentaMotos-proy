@@ -1,7 +1,9 @@
 package proyVentas_Motos.beans;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 
 
@@ -11,11 +13,12 @@ import java.math.BigDecimal;
  */
 @Entity
 @Table(name="tb_detalleventa")
-@NamedQuery(name="DetalleVenta.findAll", query="SELECT d FROM DetalleVenta d")
-public class DetalleVenta implements Serializable {
+@NamedQuery(name="Detalleventa.findAll", query="SELECT d FROM Detalleventa d")
+public class Detalleventa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDetalleVenta;
 
 	private int cantidad;
@@ -29,7 +32,7 @@ public class DetalleVenta implements Serializable {
 	@JoinColumn(name="IdVenta")
 	private Venta tbVenta;
 
-	public DetalleVenta() {
+	public Detalleventa() {
 	}
 
 	public int getIdDetalleVenta() {

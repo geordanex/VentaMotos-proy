@@ -21,15 +21,15 @@ public class Usuario implements Serializable {
 
 	private String usuario;
 
-	//bi-directional many-to-one association to Empleado
-	@ManyToOne
-	@JoinColumn(name="IdEmpleado")
-	private Empleado tbEmpleado;
-
 	//bi-directional many-to-one association to Cliente
 	@ManyToOne
 	@JoinColumn(name="IdCliente")
 	private Cliente tbCliente;
+
+	//bi-directional many-to-one association to Empleado
+	@ManyToOne
+	@JoinColumn(name="IdEmpleado")
+	private Empleado tbEmpleado;
 
 	public Usuario() {
 	}
@@ -58,20 +58,20 @@ public class Usuario implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Empleado getTbEmpleado() {
-		return this.tbEmpleado;
-	}
-
-	public void setTbEmpleado(Empleado tbEmpleado) {
-		this.tbEmpleado = tbEmpleado;
-	}
-
 	public Cliente getTbCliente() {
 		return this.tbCliente;
 	}
 
 	public void setTbCliente(Cliente tbCliente) {
 		this.tbCliente = tbCliente;
+	}
+
+	public Empleado getTbEmpleado() {
+		return this.tbEmpleado;
+	}
+
+	public void setTbEmpleado(Empleado tbEmpleado) {
+		this.tbEmpleado = tbEmpleado;
 	}
 
 }

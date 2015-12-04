@@ -1,7 +1,9 @@
 package proyVentas_Motos.beans;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +20,7 @@ public class Venta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idVenta;
 
 	private String estado;
@@ -27,19 +30,19 @@ public class Venta implements Serializable {
 
 	private BigDecimal igv;
 
-	//bi-directional many-to-one association to DetalleVenta
+	//bi-directional many-to-one association to Detalleventa
 	@OneToMany(mappedBy="tbVenta")
-	private List<DetalleVenta> tbDetalleventas;
-
-	//bi-directional many-to-one association to Empleado
-	@ManyToOne
-	@JoinColumn(name="IdEmpleado")
-	private Empleado tbEmpleado;
+	private List<Detalleventa> tbDetalleventas;
 
 	//bi-directional many-to-one association to Cliente
 	@ManyToOne
 	@JoinColumn(name="IdCliente")
 	private Cliente tbCliente;
+
+	//bi-directional many-to-one association to Empleado
+	@ManyToOne
+	@JoinColumn(name="IdEmpleado")
+	private Empleado tbEmpleado;
 
 	public Venta() {
 	}
@@ -76,34 +79,26 @@ public class Venta implements Serializable {
 		this.igv = igv;
 	}
 
-	public List<DetalleVenta> getTbDetalleventas() {
+	public List<Detalleventa> getTbDetalleventas() {
 		return this.tbDetalleventas;
 	}
 
-	public void setTbDetalleventas(List<DetalleVenta> tbDetalleventas) {
+	public void setTbDetalleventas(List<Detalleventa> tbDetalleventas) {
 		this.tbDetalleventas = tbDetalleventas;
 	}
 
-	public DetalleVenta addTbDetalleventa(DetalleVenta tbDetalleventa) {
+	public Detalleventa addTbDetalleventa(Detalleventa tbDetalleventa) {
 		getTbDetalleventas().add(tbDetalleventa);
 		tbDetalleventa.setTbVenta(this);
 
 		return tbDetalleventa;
 	}
 
-	public DetalleVenta removeTbDetalleventa(DetalleVenta tbDetalleventa) {
+	public Detalleventa removeTbDetalleventa(Detalleventa tbDetalleventa) {
 		getTbDetalleventas().remove(tbDetalleventa);
 		tbDetalleventa.setTbVenta(null);
 
 		return tbDetalleventa;
-	}
-
-	public Empleado getTbEmpleado() {
-		return this.tbEmpleado;
-	}
-
-	public void setTbEmpleado(Empleado tbEmpleado) {
-		this.tbEmpleado = tbEmpleado;
 	}
 
 	public Cliente getTbCliente() {
@@ -112,6 +107,14 @@ public class Venta implements Serializable {
 
 	public void setTbCliente(Cliente tbCliente) {
 		this.tbCliente = tbCliente;
+	}
+
+	public Empleado getTbEmpleado() {
+		return this.tbEmpleado;
+	}
+
+	public void setTbEmpleado(Empleado tbEmpleado) {
+		this.tbEmpleado = tbEmpleado;
 	}
 
 }
