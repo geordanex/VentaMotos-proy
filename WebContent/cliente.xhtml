@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="assets/css/style.css" rel="stylesheet" />
-	<title>Registro de Empleados</title>
+	<title>Registro de Clientes</title>
 </h:head>
 <h:body>
 	<header>
@@ -110,96 +109,141 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-head-line">Mantenimiento de Empleados</h4>
+                    <h4 class="page-head-line">Mantenimiento de Cliente</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-   					<p:panel id="pnPrincipal" header = "Gestion de Empleados">
+   					<p:panel id="pnPrincipal" header = "Gestion de Clientes">
 						<h:form id="frmEditor">
-							<p:panel id="pnEmpleado" header="Datos de Empleado" style="margin-bottom:20px">
+							<p:panel id="pnCliente" header="Datos de Cliente" style="margin-bottom:20px">
 							
 								<p:messages id="msgs"/>
 									<h:panelGrid columns="3" cellpadding="10">
 										<p:outputLabel for="txtNombre"
-											value="Nombre Empleado: " />
+											value="Nombre Cliente " />
 										<p:inputText id="txtNombre"
-													 value="#{gestionEmpleadoBean.empleado.nombre}"
+													 value="#{gestionClienteBean.cliente.nombre}"
 													 required="true"
 													 validatorMessage="El nombre no es correcto">
 										</p:inputText>
 										<p:message for="txtNombre" display="icon"/>
 										
 										<p:outputLabel for="txtApellido"
-											value="Apellidos del Empleado: " />
+											value="Apellidos del Cliente: " />
 										<p:inputText id="txtApellido"
-													 value="#{gestionEmpleadoBean.empleado.apellidos}"
+													 value="#{gestionClienteBean.cliente.apellidos}"
 													 required="true"
 													 validatorMessage="El apellido no es correcto">
 										</p:inputText>
 										<p:message for="txtApellido" display="icon"/>
 										
 										<p:outputLabel for="rbSexo" value="Sexo: " />
-				        				<p:selectOneRadio id="rbSexo" value="#{gestionEmpleadoBean.empleado.sexo}" 
+				        				<p:selectOneRadio id="rbSexo" value="#{gestionClienteBean.cliente.sexo}" 
 				        								  required="true" validatorMessage="El sexo no es correcto">
 				            				<f:selectItem itemLabel="Masculino" itemValue="M" />
 				            				<f:selectItem itemLabel="Femenino" itemValue="F" />
 				        				</p:selectOneRadio>
 				        				<p:message for="rbSexo" display="icon"/>
 										
-										<p:outputLabel for="txtCargo"
-											value="Cargo del Empleado: " />
-										<p:inputText id="txtCargo"
-													 value="#{gestionEmpleadoBean.empleado.cargo}"
+										<p:outputLabel for="txtFec_Nac" value="Fecha Nacimiento:" />
+        								<p:calendar id="txtFec_Nac" value="#{gestionClienteBean.cliente.fec_Nac}" showOn= "txtFec_Nac"
+        											required="true"
+													validatorMessage="La fecha no es correcto" />
+										<p:message for="txtFec_Nac" display="icon"/>
+										
+										<p:outputLabel for="txtTipoDocumento"
+											value="Tipo Documento: " />
+										<p:inputText id="txtTipoDocumento"
+													 value="#{gestionClienteBean.cliente.tipo_Doc}"
 													 required="true"
-													 validatorMessage="El Cargo no es correcto">
+													 validatorMessage="El Tipo de documento no es correcto">
 										</p:inputText>
-										<p:message for="txtCargo" display="icon"/>
+										<p:message for="txtTipoDocumento" display="icon"/>
+										
+										<p:outputLabel for="txtNumDoc"
+											value="Numero Documento: " />
+										<p:inputText id="txtNumDoc"
+													 value="#{gestionClienteBean.cliente.num_Doc}"
+													 required="true"
+													 validatorMessage="El Numero de documento no es correcto">
+										</p:inputText>
+										<p:message for="txtNumDoc" display="icon"/>
+										
+										<p:outputLabel for="txtDireccion"
+											value="Direccion de Cliente: " />
+										<p:inputText id="txtDireccion"
+													 value="#{gestionClienteBean.cliente.direccion}"
+													 required="true"
+													 validatorMessage="La direccion no es correcta">
+										</p:inputText>
+										<p:message for="txtDireccion" display="icon"/>
+										
+										<p:outputLabel for="txtTelefono"
+											value="Telefono de Cliente: " />
+										<p:inputText id="txtTelefono"
+													 value="#{gestionClienteBean.cliente.telefono}"
+													 required="true"
+													 validatorMessage="El telefono no es correcto">
+										</p:inputText>
+										<p:message for="txtTelefono" display="icon"/>
 									
 									</h:panelGrid>
 									
 									<p:commandButton value="Registrar"
-													 rendered="${not gestionEmpleadoBean.editar}"
-													 action="${gestionEmpleadoBean.guardar}"
-													 update="frmLista:pdTable pnEmpleado"/>
+													 rendered="${not gestionClienteBean.editar}"
+													 action="${gestionClienteBean.guardar}"
+													 update="frmLista:pdTable pnCliente"/>
 									
 									<p:commandButton value="Nuevo"
-													 action="${gestionEmpleadoBean.nuevo}"
-													 update="pnEmpleado"
+													 action="${gestionClienteBean.nuevo}"
+													 update="pnCliente"
 													 process="@this" />
 													 
 									<p:commandButton value="Modificar"
-													 rendered="${gestionEmpleadoBean.editar}"
-													 action="${gestionEmpleadoBean.guardar}"
-													 update="frmLista:pdTable pnEmpleado" />
+													 rendered="${gestionClienteBean.editar}"
+													 action="${gestionClienteBean.guardar}"
+													 update="frmLista:pdTable pnCliente" />
 							
 							</p:panel>
 						</h:form>
 						
 						<h:form id="frmLista">
 							<p:dataTable id="pdTable"
-										 var="empleado"
-										 value="#{gestionEmpleadoBean.empleados}">
+										 var="cliente"
+										 value="#{gestionClienteBean.clientes}">
 								<p:column headerText="ID">
-									<h:outputText value="#{producto.idEmpleado}" />
+									<h:outputText value="#{cliente.idCliente}" />
 								</p:column>
 								<p:column headerText="Nombres">
-									<h:outputText value="#{producto.nombre}" />
+									<h:outputText value="#{cliente.nombre}" />
 								</p:column>
 								<p:column headerText="Apellidos">
-									<h:outputText value="#{producto.apellidos}" />
+									<h:outputText value="#{cliente.apellidos}" />
 								</p:column>
 								<p:column headerText="Sexo">
-									<h:outputText value="#{producto.sexo}" />
+									<h:outputText value="#{cliente.sexo}" />
 								</p:column>
-								<p:column headerText="Cargo">
-									<h:outputText value="#{producto.cargo}" />
+								<p:column headerText="Fecha Nacimiento">
+									<h:outputText value="#{cliente.fec_Nac}" />
+								</p:column>
+								<p:column headerText="Tipo Documento">
+									<h:outputText value="#{cliente.tipo_Doc}" />
+								</p:column>
+								<p:column headerText="Numero Documento">
+									<h:outputText value="#{cliente.num_Doc}" />
+								</p:column>
+								<p:column headerText="Direccion">
+									<h:outputText value="#{cliente.direccion}" />
+								</p:column>
+								<p:column headerText="Telefono">
+									<h:outputText value="#{cliente.telefono}" />
 								</p:column>
 								
 								<p:column>
 									<p:commandButton icon="ui-icon-edit"
 													 title="Editar"
-													 actionListener="#{gestionEmpleadoBean.editar(empleado)}"
+													 actionListener="#{gestionClienteBean.editar(cliente)}"
 													 ajax="false" />
 								</p:column>
 							</p:dataTable>

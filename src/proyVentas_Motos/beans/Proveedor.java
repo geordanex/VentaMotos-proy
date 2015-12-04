@@ -15,6 +15,7 @@ import java.util.List;
 @Table(name="tb_proveedor")
 @NamedQuery(name="Proveedor.findAll", query="SELECT p FROM Proveedor p")
 public class Proveedor implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -86,6 +87,19 @@ public class Proveedor implements Serializable {
 		tbProducto.setTbProveedor(null);
 
 		return tbProducto;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (this == obj)
+	        return true;
+	    if (obj == null)
+	        return false;
+	    if (!(obj instanceof Proveedor))
+	        return false;
+	    if(this.idProveedor == ((Proveedor)obj).idProveedor)
+	    	return true;
+	    return false;
 	}
 
 }

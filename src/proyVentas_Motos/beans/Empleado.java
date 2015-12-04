@@ -124,4 +124,18 @@ public class Empleado implements Serializable {
 		return tbVenta;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (this == obj)
+	        return true;
+	    if (obj == null)
+	        return false;
+	    if (!(obj instanceof Empleado))
+	        return false;
+	    if(this.idEmpleado == ((Empleado)obj).idEmpleado)
+	    	return true;
+	    return false;
+	}
+
 }

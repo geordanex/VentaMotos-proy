@@ -1,5 +1,6 @@
 package proyVentas_Motos.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.annotation.ManagedBean;
@@ -10,6 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+
+import org.primefaces.event.SelectEvent;
 
 import proyVentas_Motos.beans.Cliente;
 
@@ -87,5 +90,10 @@ String mensaje = null;
 		cliente = clienteModificar;
 		editar = true;
 	}
+	public void onDateSelect(SelectEvent event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+    }
 
 }

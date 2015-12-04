@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS  -->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="assets/css/style.css" rel="stylesheet" />
-	<title>Registro de Empleados</title>
+	<title>Catalogo de Productos</title>
 </h:head>
 <h:body>
 	<header>
@@ -110,101 +109,115 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-head-line">Mantenimiento de Empleados</h4>
+                    <h4 class="page-head-line">Catalogo de Productos</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-   					<p:panel id="pnPrincipal" header = "Gestion de Empleados">
-						<h:form id="frmEditor">
-							<p:panel id="pnEmpleado" header="Datos de Empleado" style="margin-bottom:20px">
-							
-								<p:messages id="msgs"/>
-									<h:panelGrid columns="3" cellpadding="10">
-										<p:outputLabel for="txtNombre"
-											value="Nombre Empleado: " />
-										<p:inputText id="txtNombre"
-													 value="#{gestionEmpleadoBean.empleado.nombre}"
-													 required="true"
-													 validatorMessage="El nombre no es correcto">
-										</p:inputText>
-										<p:message for="txtNombre" display="icon"/>
-										
-										<p:outputLabel for="txtApellido"
-											value="Apellidos del Empleado: " />
-										<p:inputText id="txtApellido"
-													 value="#{gestionEmpleadoBean.empleado.apellidos}"
-													 required="true"
-													 validatorMessage="El apellido no es correcto">
-										</p:inputText>
-										<p:message for="txtApellido" display="icon"/>
-										
-										<p:outputLabel for="rbSexo" value="Sexo: " />
-				        				<p:selectOneRadio id="rbSexo" value="#{gestionEmpleadoBean.empleado.sexo}" 
-				        								  required="true" validatorMessage="El sexo no es correcto">
-				            				<f:selectItem itemLabel="Masculino" itemValue="M" />
-				            				<f:selectItem itemLabel="Femenino" itemValue="F" />
-				        				</p:selectOneRadio>
-				        				<p:message for="rbSexo" display="icon"/>
-										
-										<p:outputLabel for="txtCargo"
-											value="Cargo del Empleado: " />
-										<p:inputText id="txtCargo"
-													 value="#{gestionEmpleadoBean.empleado.cargo}"
-													 required="true"
-													 validatorMessage="El Cargo no es correcto">
-										</p:inputText>
-										<p:message for="txtCargo" display="icon"/>
-									
-									</h:panelGrid>
-									
-									<p:commandButton value="Registrar"
-													 rendered="${not gestionEmpleadoBean.editar}"
-													 action="${gestionEmpleadoBean.guardar}"
-													 update="frmLista:pdTable pnEmpleado"/>
-									
-									<p:commandButton value="Nuevo"
-													 action="${gestionEmpleadoBean.nuevo}"
-													 update="pnEmpleado"
-													 process="@this" />
-													 
-									<p:commandButton value="Modificar"
-													 rendered="${gestionEmpleadoBean.editar}"
-													 action="${gestionEmpleadoBean.guardar}"
-													 update="frmLista:pdTable pnEmpleado" />
-							
-							</p:panel>
-						</h:form>
-						
-						<h:form id="frmLista">
-							<p:dataTable id="pdTable"
-										 var="empleado"
-										 value="#{gestionEmpleadoBean.empleados}">
-								<p:column headerText="ID">
-									<h:outputText value="#{producto.idEmpleado}" />
-								</p:column>
-								<p:column headerText="Nombres">
-									<h:outputText value="#{producto.nombre}" />
-								</p:column>
-								<p:column headerText="Apellidos">
-									<h:outputText value="#{producto.apellidos}" />
-								</p:column>
-								<p:column headerText="Sexo">
-									<h:outputText value="#{producto.sexo}" />
-								</p:column>
-								<p:column headerText="Cargo">
-									<h:outputText value="#{producto.cargo}" />
-								</p:column>
-								
-								<p:column>
-									<p:commandButton icon="ui-icon-edit"
-													 title="Editar"
-													 actionListener="#{gestionEmpleadoBean.editar(empleado)}"
-													 ajax="false" />
-								</p:column>
-							</p:dataTable>
-						</h:form>
-					</p:panel>
+                	<p:panelGrid columns="3" layout="grid">
+	   					<p:panelGrid columns="2" style="width:250px;">
+						    <f:facet name="header">
+						        <p:graphicImage name="#" />
+						    </f:facet>
+						 
+						    <h:outputText value="Marca:" />
+						    <h:outputText value="Bajaj" />
+						 
+						    <h:outputText value="Motor:" />
+						    <h:outputText value="200 CC" />
+						 
+						    <h:outputText value="Categoria:" />
+						    <h:outputText value="Pistera" />
+						 
+						    <h:outputText value="Precio:" />
+						    <h:outputText value="$3000" />
+						</p:panelGrid>
+						<p:panelGrid columns="2" style="width:250px;">
+						    <f:facet name="header">
+						        <p:graphicImage name="#" />
+						    </f:facet>
+						 
+						    <h:outputText value="Marca:" />
+						    <h:outputText value="Honda" />
+						 
+						    <h:outputText value="Motor:" />
+						    <h:outputText value="220 CC" />
+						 
+						    <h:outputText value="Categoria:" />
+						    <h:outputText value="Pistera" />
+						 
+						    <h:outputText value="Precio:" />
+						    <h:outputText value="$5000" />
+						</p:panelGrid>
+						<p:panelGrid columns="2" style="width:250px;">
+						    <f:facet name="header">
+						        <p:graphicImage name="#" />
+						    </f:facet>
+						 
+						    <h:outputText value="Marca:" />
+						    <h:outputText value="Bajaj" />
+						 
+						    <h:outputText value="Motor:" />
+						    <h:outputText value="200 CC" />
+						 
+						    <h:outputText value="Categoria:" />
+						    <h:outputText value="Pistera" />
+						 
+						    <h:outputText value="Precio:" />
+						    <h:outputText value="$3000" />
+						</p:panelGrid>
+						<p:panelGrid columns="2" style="width:250px;">
+						    <f:facet name="header">
+						        <p:graphicImage name="#" />
+						    </f:facet>
+						 
+						    <h:outputText value="Marca:" />
+						    <h:outputText value="Bajaj" />
+						 
+						    <h:outputText value="Motor:" />
+						    <h:outputText value="200 CC" />
+						 
+						    <h:outputText value="Categoria:" />
+						    <h:outputText value="Pistera" />
+						 
+						    <h:outputText value="Precio:" />
+						    <h:outputText value="$3000" />
+						</p:panelGrid>
+						<p:panelGrid columns="2" style="width:250px;">
+						    <f:facet name="header">
+						        <p:graphicImage name="#" />
+						    </f:facet>
+						 
+						    <h:outputText value="Marca:" />
+						    <h:outputText value="Bajaj" />
+						 
+						    <h:outputText value="Motor:" />
+						    <h:outputText value="200 CC" />
+						 
+						    <h:outputText value="Categoria:" />
+						    <h:outputText value="Pistera" />
+						 
+						    <h:outputText value="Precio:" />
+						    <h:outputText value="$3000" />
+						</p:panelGrid>
+						<p:panelGrid columns="2" style="width:250px;">
+						    <f:facet name="header">
+						        <p:graphicImage name="#" />
+						    </f:facet>
+						 
+						    <h:outputText value="Marca:" />
+						    <h:outputText value="Bajaj" />
+						 
+						    <h:outputText value="Motor:" />
+						    <h:outputText value="200 CC" />
+						 
+						    <h:outputText value="Categoria:" />
+						    <h:outputText value="Pistera" />
+						 
+						    <h:outputText value="Precio:" />
+						    <h:outputText value="$3000" />
+						</p:panelGrid>
+					</p:panelGrid>
                 </div>
             </div>
         </div>
